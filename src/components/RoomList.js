@@ -16,7 +16,7 @@ class RoomList extends Component {
            console.log(this.state.rooms)
         })
     }
-
+ 
     render () {
         return (
             <div className='rooms-list'>
