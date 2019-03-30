@@ -21,7 +21,7 @@ class RoomList extends Component {
             <div className='rooms-list'>
                 <ul>
                     {this.state.rooms.map(data => 
-                    <li className='room-no' key={data.name}>{data.value}</li>)}
+                    <li className='room-no' key={data.key}>{data.value}</li>)}
                 </ul>
             </div>
     )
