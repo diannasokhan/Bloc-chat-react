@@ -16,7 +16,6 @@ class RoomList extends Component {
             const room = {value : snapshot.val(),
             key : snapshot.key};
            this.setState({rooms: this.state.rooms.concat(room)})
-           console.log(this.state.rooms)
         })
     }
     handleChange(e){
@@ -35,11 +34,7 @@ class RoomList extends Component {
             <div className='rooms-list'>
                 <ul>
                     {this.state.rooms.map(data => 
-<<<<<<< HEAD
-                    <li className='room-no' key={data.key}>{data.value}</li>)}
-=======
                     <li className='room-no' key={data.key}>{data.value.name}</li>)}
->>>>>>> create-chat-rooms
                 </ul>
             <form className='new-room' onSubmit={(e) => this.createRoom(e)}>
                 <input type='text' value={this.state.roomName} name='room-name' onChange={(e) => this.handleChange(e)} />
