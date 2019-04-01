@@ -34,6 +34,10 @@ class RoomList extends Component {
             <div className='rooms-list'>
                 <ul>
                     {this.state.rooms.map(data => 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 973934cd7078995e85682cad74e137ff5106c3e1
                     <li className='room-no' key={data.key}>{data.value.name}</li>)}
                 </ul>
             <form className='new-room' onSubmit={(e) => this.createRoom(e)}>
