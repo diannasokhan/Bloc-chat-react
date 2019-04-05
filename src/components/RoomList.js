@@ -5,7 +5,7 @@ class RoomList extends Component {
         super(props)
         this.state = {
             rooms:[],
-            roomName:''
+            roomName:'',
         
         }
         this.roomsRef = this.props.database.database().ref('rooms');
@@ -19,26 +19,23 @@ class RoomList extends Component {
         })
     }
     handleChange(e){
-       this.setState({roomName: e.target.value})
+       this.setState({
+           roomName: e.target.value})
     }
     createRoom(e){
         e.preventDefault();
-        this.roomsRef.push({name: this.state.roomName});
+        this.roomsRef.push({roomName: this.state.roomName});
         this.setState({ roomName: '' });
     }
-
-    
-    
+   currentRoom(room){
+     this.props.setActiveRoom(room)
+   }
     render () {
         return (
             <div className='rooms-list'>
                 <ul>
                     {this.state.rooms.map(data => 
-<<<<<<< HEAD
-=======
-
->>>>>>> 973934cd7078995e85682cad74e137ff5106c3e1
-                    <li className='room-no' key={data.key}>{data.value.name}</li>)}
+                    <li className='room-no' key={data.key} onClick={(room) => this.currentRoom(room)}>{data.value.name}</li>)}
                 </ul>
             <form className='new-room' onSubmit={(e) => this.createRoom(e)}>
                 <input type='text' value={this.state.roomName} name='room-name' onChange={(e) => this.handleChange(e)} />
