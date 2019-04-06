@@ -30,7 +30,6 @@ setActiveRoom(room){
       <div className="App">
         <RoomList database={firebase} activeRoom={this.state.activeRoom} setActiveRoom={(room) => this.setActiveRoom(room)}/>
         <MessageList database={firebase} activeRoom={this.state.activeRoom} />
-     
       </div>
     );
   }
