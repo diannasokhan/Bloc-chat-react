@@ -10,7 +10,7 @@ class MessageList extends Component{
             sentAt: '',
             roomId: ''
         }
-        this.messagesRef = this.props.database.database().ref('Messages')
+        this.messagesRef = this.props.firebase.database().ref('Messages')
     }
     componentDidMount(){
         this.messagesRef.on('child_added', snapshot => {
