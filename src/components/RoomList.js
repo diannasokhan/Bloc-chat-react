@@ -27,15 +27,12 @@ class RoomList extends Component {
         this.roomsRef.push({roomName: this.state.roomName});
         this.setState({ roomName: '' });
     }
-   currentRoom(room){
-     this.props.setActiveRoom(room)
-   }
     render () {
         return (
             <div className='rooms-list'>
                 <ul>
                     {this.state.rooms.map(data => 
-                    <li className='room-no' key={data.key} onClick={(room) => this.currentRoom(room)}>{data.value.name}</li>)}
+                    <li className='room-no' key={data.key} onClick={(room) => this.props.setActiveRoom(room)}>{data.value.name}</li>)}
                 </ul>
             <form className='new-room' onSubmit={(e) => this.createRoom(e)}>
                 <input type='text' value={this.state.roomName} name='room-name' onChange={(e) => this.handleChange(e)} />

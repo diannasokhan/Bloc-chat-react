@@ -10,14 +10,13 @@ class MessageList extends Component{
             sentAt : '',
             roomId : ''
         }
-        this.messagesRef = this.props.database.database().ref('messages')
+        this.messagesRef = this.props.database.database().ref('Messages')
     }
     componentDidMount(){
         this.messagesRef.on('child_added', snapshot => {
          const message = {
-             value: snapshot.val(),
-             key: snapshot.key
-         }  
+             value : snapshot.val(),
+             key : snapshot.key};  
          this.setState({messages : this.state.messages.concat(message)})
         })
     }   
@@ -25,8 +24,12 @@ class MessageList extends Component{
     render(){
         return(
         <div className='message-list'>
-        {this.state.messages.map(message => 
-          <li className='messages' key={message.key}>{message.username} : {message.content}</li>
+        {this.state.messages.map(message => {
+            if (this.props.activeRoom === message.value.roomId){
+                return <li className='messages' key={message.key}> {message.value.username} : {message.value.content}</li>
+             }
+             else return '';
+        }
           )}
         </div>
         )
