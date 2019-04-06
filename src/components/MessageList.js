@@ -31,8 +31,6 @@ class MessageList extends Component{
                 {message.value.username} : {message.value.content}
                 </li> })
            }
-           {console.log(this.props.activeRoom)}
-           {console.log(this.state.messages)}
         </div>
         )
     }
