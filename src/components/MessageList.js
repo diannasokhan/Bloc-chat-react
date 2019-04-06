@@ -24,13 +24,11 @@ class MessageList extends Component{
     render(){
         return(
         <div className='message-list'>
-        {this.state.messages.map(message => {
-            if (this.props.activeRoom === message.value.roomId){
-                return <li className='messages' key={message.key}> {message.value.username} : {message.value.content}</li>
-             }
-             else return '';
-        }
-          )}
+           {this.state.messages
+           .filter(message => this.props.activeRoom.key === message.value.roomId)
+           .map(message => <li className='messages' key={message.key}> {message.value.username} : {message.value.content}</li> )
+           }
+        
         </div>
         )
     }
