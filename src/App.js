@@ -20,7 +20,7 @@ constructor(props){
   super(props)
   this.state = {
     activeRoom: '',
-    user: '',
+    user: null,
   }
 }
 setActiveRoom(room){
@@ -34,7 +34,7 @@ setUser(user){
       <div className="App">
         <RoomList firebase={firebase} activeRoom={this.state.activeRoom} setActiveRoom={(room) => this.setActiveRoom(room)}/>
         <MessageList firebase={firebase} activeRoom={this.state.activeRoom} />
-        <User firebase={firebase} setUser={(user) => this.setUser(user)}/>
+        <User firebase={firebase} setUser={(user) => this.setUser(user)} user={this.state.user}/>
       </div>
     );
   }
