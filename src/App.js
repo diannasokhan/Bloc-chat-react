@@ -33,7 +33,7 @@ setUser(user){
     return (
       <div className="App">
         <RoomList firebase={firebase} activeRoom={this.state.activeRoom} setActiveRoom={(room) => this.setActiveRoom(room)}/>
-        <MessageList firebase={firebase} activeRoom={this.state.activeRoom} />
+        <MessageList firebase={firebase} activeRoom={this.state.activeRoom} user={this.state.user}/>
         <User firebase={firebase} setUser={(user) => this.setUser(user)} user={this.state.user}/>
       </div>
     );

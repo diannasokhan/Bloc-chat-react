@@ -20,6 +20,20 @@ class MessageList extends Component{
          this.setState({messages : this.state.messages.concat(message)})
         })
     }   
+    createMessage(e){
+        e.preventDefault();
+        this.messagesRef.push({
+            content: this.state.content,
+            sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
+            roomId: this.props.activeRoom.key,
+            username: this.props.user ? 'Guest' : this.props.user.displayName
+        });
+        this.setState({content : ''})
+     }
+     handleChange(e){
+         e.preventDefault();
+         this.setState({content: e.target.value})
+     }
    
     render(){
         return(
@@ -31,6 +45,10 @@ class MessageList extends Component{
                 {message.value.username} : {message.value.content}
                 </li> })
            }
+           <form className='new-message' onSubmit={(e) => this.createMessage(e)}>
+            <input type='text' placeholder='Enter Message Here' onChange={(e) => this.handleChange(e)}/>
+            <input type='submit' value='Submit'/>
+           </form>
         </div>
         )
     }

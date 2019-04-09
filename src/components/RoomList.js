@@ -35,7 +35,7 @@ class RoomList extends Component {
                     <li className='room-no' key={room.key} onClick={() => this.props.setActiveRoom(room)}>{room.value.name}</li>)}
                 </ul>
             <form className='new-room' onSubmit={(e) => this.createRoom(e)}>
-                <input type='text' value={this.state.roomName} name='room-name' onChange={(e) => this.handleChange(e)} />
+                <input type='text' value={this.state.roomName} name='room-name' onChange={(e) => this.handleChange(e)} placeholder='New Room'/>
                 <input type='submit' value='Submit' />
             </form>
             </div>
