@@ -22,12 +22,16 @@ class MessageList extends Component{
     }   
     createMessage(e){
         e.preventDefault();
-        this.messagesRef.push({
+        try {
+            this.messagesRef.push({
             content: this.state.content,
             sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
             roomId: this.props.activeRoom.key,
             username: this.props.user ? this.props.user.displayName : 'Guest'
-        });
+        })}
+        catch (err){
+            alert('Select Room')
+        };
         this.setState({content : ''})
      }
      handleChange(e){
