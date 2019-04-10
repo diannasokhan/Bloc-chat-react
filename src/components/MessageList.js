@@ -26,7 +26,7 @@ class MessageList extends Component{
             content: this.state.content,
             sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
             roomId: this.props.activeRoom.key,
-            username: this.props.user ? 'Guest' : this.props.user.displayName
+            username: this.props.user ? this.props.user.displayName : 'Guest'
         });
         this.setState({content : ''})
      }
@@ -34,16 +34,24 @@ class MessageList extends Component{
          e.preventDefault();
          this.setState({content: e.target.value})
      }
-   
+     handleDelete(id){
+        this.setState(prevState =>
+            ({messages : prevState.messages.filter(message => message.key !== id)}))
+         this.messagesRef.child(id).remove();
+     }
+     
     render(){
         return(
         <div className='message-list'>
            {this.state.messages
            .filter(message => this.props.activeRoom.key === message.value.roomId)
            .map(message => { 
-               return <li className='messages' key={message.key}>
+               return  <div className='messages' key={message.key}>
+               <li className='message'>
                 {message.value.username} : {message.value.content}
-                </li> })
+                </li> 
+                <button className='delete-button' onClick={() => this.handleDelete(message.key)}>x</button>
+             </div>})
            }
            <form className='new-message' onSubmit={(e) => this.createMessage(e)}>
             <input type='text' placeholder='Enter Message Here' onChange={(e) => this.handleChange(e)}/>
